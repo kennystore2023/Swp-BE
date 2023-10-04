@@ -17,7 +17,7 @@ public class ProductStatusRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Select * from dbo.ProductStatus";
+                String sql = "Select * from ProductStatus";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet table = pst.executeQuery();
                 if (table != null) {
@@ -40,7 +40,7 @@ public class ProductStatusRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Select * from dbo.ProductStatus where statusId = ? ";
+                String sql = "Select * from ProductStatus where statusId = ? ";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, statusId);
                 ResultSet table = pst.executeQuery();
@@ -79,7 +79,7 @@ public class ProductStatusRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Update dbo.ProductStatus Set categoryName = ? WHERE categoryId = ?";
+                String sql = "Update ProductStatus Set categoryName = ? WHERE categoryId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, productStatus.getStatus());
                 pst.setInt(2, productStatus.getStatusId());
@@ -99,7 +99,7 @@ public class ProductStatusRepository {
             int count = 0;
             if (cn != null) {
                 for (int i = 0; i < statusId.length; i++) {
-                    String sql = "Delete from dbo.ProductStatus where statusId = ?";
+                    String sql = "Delete from ProductStatus where statusId = ?";
                     PreparedStatement pst = cn.prepareStatement(sql);
                     pst.setInt(1, statusId[i]);
                     int row = pst.executeUpdate();

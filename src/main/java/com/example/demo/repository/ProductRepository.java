@@ -46,7 +46,7 @@ public class ProductRepository {
 
     //Get all product
     public static List<Product> getAllProduct() throws Exception {
-        List<Product> productList = getProduct("select * from dbo.Product");
+        List<Product> productList = getProduct("select * from Product");
         return productList;
     }
 
@@ -59,12 +59,12 @@ public class ProductRepository {
 
     //Search product by it's name
     public static List<Product> searchByName(String searchValue) throws Exception {
-        /*String sql = "select * from dbo.Product where productName like N'%" + searchValue + "%'";
+        /*String sql = "select * from Product where productName like N'%" + searchValue + "%'";
         List<Product> productList  = getProduct(sql);
         return productList;*/
 
         //Search chữ ko dấu
-        List<Product> productList = getProduct("select * from dbo.Product");
+        List<Product> productList = getProduct("select * from Product");
         Product product = new Product();
         List<Product> result = new ArrayList<>();
         for (int i = 0; i < productList.size(); i++){
@@ -78,7 +78,7 @@ public class ProductRepository {
 
     //Filter product by id
     public static Product getProductById(int productId) throws Exception {
-        String sql = "select * from dbo.Product where productId = '" + productId + "'";
+        String sql = "select * from Product where productId = '" + productId + "'";
         Product product = getProduct(sql).get(0);
         return product;
     }
@@ -89,7 +89,7 @@ public class ProductRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Select * from dbo.Category where categoryName = ?";
+                String sql = "Select * from Category where categoryName = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, categoryName);
                 ResultSet table = pst.executeQuery();
@@ -109,7 +109,7 @@ public class ProductRepository {
     public static List<Product> multiFilter(String categoryName, String price, String status) throws Exception {
         int categoryId = getCategoryId(categoryName);
 
-        String sql = "Select * from dbo.Product where";
+        String sql = "Select * from Product where";
 
         if (categoryName!=null) sql = sql + " categoryId = " + categoryId + " and ";
 
@@ -141,7 +141,7 @@ public class ProductRepository {
     //Filter product by it's category
     //Đã tích hợp trong multiFilter
     public static List<Product> filterByCategoryId(int categoryId) throws Exception {
-        String sql = "select * from dbo.Product where categoryId = " + categoryId;
+        String sql = "select * from Product where categoryId = " + categoryId;
         List<Product> productList = getProduct(sql);
         return productList;
     }
@@ -149,7 +149,7 @@ public class ProductRepository {
     //Filter product by price from x to y
     //Đã tích hợp trong multiFilter
     public static List<Product> sortByPrice(int from, int to) throws Exception {
-        String sql = "Select * from dbo.Product where price >= " + from + " and price <= " + to;
+        String sql = "Select * from Product where price >= " + from + " and price <= " + to;
         List<Product> productList = getProduct(sql);
         return productList;
     }
@@ -157,7 +157,7 @@ public class ProductRepository {
     //Filter product by status
     //Đã tích hợp trong multiFilter
     public static List<Product> filterByStatus(String status) throws Exception {
-        String sql = "Select * from dbo.Product where status = N'" + status + "'";
+        String sql = "Select * from Product where status = N'" + status + "'";
         List<Product> productList = getProduct(sql);
         return productList;
     }
@@ -195,7 +195,7 @@ public class ProductRepository {
 
     //Delete existing product by id
     public static boolean deleteProduct(int[] productId) throws Exception {
-        String sql = "Delete from dbo.Product where productId = ?";
+        String sql = "Delete from Product where productId = ?";
         try {
             Connection cn = DBUtils.makeConnection();
             int count = 0;
@@ -216,7 +216,7 @@ public class ProductRepository {
 
     //Delete product by changing product status to "xóa"
     public static boolean deleteProductByChangingStatus(int[] productId) throws Exception {
-        String sql = "Update dbo.Product set status = 4 where productId = ?";
+        String sql = "Update Product set status = 4 where productId = ?";
         try {
             Connection cn = DBUtils.makeConnection();
             int count = 0;
@@ -246,7 +246,7 @@ public class ProductRepository {
             if (status >= 0) {
                 Connection cn = DBUtils.makeConnection();
                 if (cn != null) {
-                    String sql = "Update dbo.Product set productName = ?, price = ?, quantity = ?, categoryId = ?, status = ?, description = ?, image = ?, dateUpdate = ? where productId = ?";
+                    String sql = "Update Product set productName = ?, price = ?, quantity = ?, categoryId = ?, status = ?, description = ?, image = ?, dateUpdate = ? where productId = ?";
                     PreparedStatement pst = cn.prepareStatement(sql);
                     pst.setString(1, product.getProductName());
                     pst.setInt(2, product.getPrice());
@@ -272,7 +272,7 @@ public class ProductRepository {
     public static String[] getProductName() throws Exception {
         String[] productName = null;
         try {
-            List<Product> productList = getProduct("select * from dbo.Product");
+            List<Product> productList = getProduct("select * from Product");
             productName = new String[productList.size()];
             for (int i = 0; i < productList.size(); i++){
                 productName[i] = productList.get(i).getProductName();

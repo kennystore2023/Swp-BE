@@ -17,7 +17,7 @@ public class CartRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "SELECT * FROM dbo.Cart";
+                String sql = "SELECT * FROM Cart";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet table = pst.executeQuery();
                 if (table != null) {

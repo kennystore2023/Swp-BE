@@ -15,7 +15,7 @@ public class OrderRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Select * from dbo.Orders";
+                String sql = "Select * from Orders";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet table = pst.executeQuery();
                 if (table != null) {
@@ -46,7 +46,7 @@ public class OrderRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Select * from dbo.Orders where orderId = ?";
+                String sql = "Select * from Orders where orderId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, orderId);
                 ResultSet table = pst.executeQuery();
@@ -73,7 +73,7 @@ public class OrderRepository {
     //Delete existing Order by id
     public static boolean deleteOrder(int[] orderId) throws Exception {
         try{
-            String sql = "Delete from dbo.Orders where orderId = ?";
+            String sql = "Delete from Orders where orderId = ?";
             Connection cn = DBUtils.makeConnection();
             int count = 0;
             if (cn != null) {
@@ -130,7 +130,7 @@ public class OrderRepository {
         try{
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Update dbo.Orders set paymentId = ?, deliveryId = ?, statusId = ?, note = ?, totalPayment = ?, paymentDate = ? where OrderId = ?";
+                String sql = "Update Orders set paymentId = ?, deliveryId = ?, statusId = ?, note = ?, totalPayment = ?, paymentDate = ? where OrderId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, Order.getPaymentId());
                 pst.setInt(2, Order.getDeliveryId());
@@ -200,7 +200,7 @@ public class OrderRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Select * from dbo.Orders where userId = ?";
+                String sql = "Select * from Orders where userId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, userId);
                 ResultSet table = pst.executeQuery();
@@ -253,7 +253,7 @@ public class OrderRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Update dbo.Orders set statusId = ? where OrderId = ?";
+                String sql = "Update Orders set statusId = ? where OrderId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, Order.getStatusId());
                 pst.setInt(2, Order.getOrderId());

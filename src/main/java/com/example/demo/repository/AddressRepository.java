@@ -13,7 +13,7 @@ public class AddressRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Select * from dbo.Address";
+                String sql = "Select * from Address";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet table = pst.executeQuery();
                 if (table != null) {
@@ -39,7 +39,7 @@ public class AddressRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Select * from dbo.Address where addressId = ?";
+                String sql = "Select * from Address where addressId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, addressId);
                 ResultSet table = pst.executeQuery();
@@ -65,7 +65,7 @@ public class AddressRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "INSERT INTO dbo.Address (userId, address, dateCreate) VALUES (?,?,?)";
+                String sql = "INSERT INTO Address (userId, address, dateCreate) VALUES (?,?,?)";
                 PreparedStatement pst = cn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 pst.setInt(1, address.getUserId());
                 pst.setString(2, address.getAddress());
@@ -87,7 +87,7 @@ public class AddressRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Update dbo.Address Set address = ?, dateUpdate = ? WHERE addressId = ?";
+                String sql = "Update Address Set address = ?, dateUpdate = ? WHERE addressId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, address.getAddress());
                 pst.setString(2, DBUtils.getCurrentDate());
@@ -142,7 +142,7 @@ public class AddressRepository {
                 int count = 0;
                 if (cn != null) {
                     for (int i = 0; i < addressId.length; i++) {
-                        String sql = "Delete from dbo.Address where addressId = ?";
+                        String sql = "Delete from Address where addressId = ?";
                         PreparedStatement pst = cn.prepareStatement(sql);
                         pst.setInt(1, addressId[i]);
                         int row = pst.executeUpdate();

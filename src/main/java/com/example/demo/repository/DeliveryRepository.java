@@ -16,7 +16,7 @@ public class DeliveryRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "select * from dbo.Delivery";
+                String sql = "select * from Delivery";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet table = pst.executeQuery();
                 if (table != null) {
@@ -39,7 +39,7 @@ public class DeliveryRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "select * from dbo.Delivery where deliveryId = ?";
+                String sql = "select * from Delivery where deliveryId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, deliveryId);
                 ResultSet table = pst.executeQuery();
@@ -114,7 +114,7 @@ public class DeliveryRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "select * from dbo.Delivery where addressId = ?";
+                String sql = "select * from Delivery where addressId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, addressId);
                 ResultSet table = pst.executeQuery();

@@ -16,7 +16,7 @@ public class UserRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "select * from dbo.Users";
+                String sql = "select * from Users";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet table = pst.executeQuery();
                 if (table != null) {
@@ -44,7 +44,7 @@ public class UserRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "select * from dbo.Users where userId = ?";
+                String sql = "select * from Users where userId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, userId);
                 ResultSet table = pst.executeQuery();
@@ -71,7 +71,7 @@ public class UserRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "select * from dbo.Users where userUid = ?";
+                String sql = "select * from Users where userUid = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, userUid);
                 ResultSet table = pst.executeQuery();

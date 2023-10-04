@@ -15,7 +15,7 @@ public class CategoryRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Select * from dbo.Category";
+                String sql = "Select * from Category";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 ResultSet table = pst.executeQuery();
                 if (table != null) {
@@ -38,7 +38,7 @@ public class CategoryRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Select * from dbo.Category where categoryId = ? ";
+                String sql = "Select * from Category where categoryId = ? ";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, categoryId);
                 ResultSet table = pst.executeQuery();
@@ -77,7 +77,7 @@ public class CategoryRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Update dbo.Category Set categoryName = ? WHERE categoryId = ?";
+                String sql = "Update Category Set categoryName = ? WHERE categoryId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, category.getCategoryName());
                 pst.setInt(2, category.getCategoryId());
@@ -97,7 +97,7 @@ public class CategoryRepository {
             int count = 0;
             if (cn != null) {
                 for (int i = 0; i < categoryId.length; i++) {
-                    String sql = "Delete from dbo.Category where categoryId = ?";
+                    String sql = "Delete from Category where categoryId = ?";
                     PreparedStatement pst = cn.prepareStatement(sql);
                     pst.setInt(1, categoryId[i]);
                     int row = pst.executeUpdate();
@@ -120,7 +120,7 @@ public class CategoryRepository {
             for (int i = 0; i < categoryList.size(); i++) {
                 int categoryId = categoryList.get(i).getCategoryId();
                 String categoryName = categoryList.get(i).getCategoryName();
-                String sql = "select * from dbo.Product where categoryId = '" + categoryId + "'";
+                String sql = "select * from Product where categoryId = '" + categoryId + "'";
                 List<Product> productList = new ArrayList<>();
 
                 Connection cn = DBUtils.makeConnection();

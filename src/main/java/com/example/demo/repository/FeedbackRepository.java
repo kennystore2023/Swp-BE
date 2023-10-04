@@ -14,7 +14,7 @@ public class FeedbackRepository {
     public static List<Feedback> getAllFeedback() throws Exception {
         List<Feedback> feedbackList = new ArrayList<>();
         try{
-            String sql = "select * from dbo.Feedback";
+            String sql = "select * from Feedback";
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
                 PreparedStatement pst = cn.prepareStatement(sql);
@@ -41,7 +41,7 @@ public class FeedbackRepository {
     public static Feedback getFeedbackById(int feedbackId) throws Exception {
         Feedback feedback = new Feedback();
         try {
-            String sql = "select * from dbo.Feedback where feedbackId = ?";
+            String sql = "select * from Feedback where feedbackId = ?";
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
                 PreparedStatement pst = cn.prepareStatement(sql);
@@ -95,7 +95,7 @@ public class FeedbackRepository {
     //Delete existing feedback by id
     public static boolean deleteFeedback(int[] feedbackId) throws Exception {
         try{
-            String sql = "Delete from dbo.Feedback where feedbackId = ?";
+            String sql = "Delete from Feedback where feedbackId = ?";
             Connection cn = DBUtils.makeConnection();
             int count = 0;
             if (cn != null) {
@@ -119,7 +119,7 @@ public class FeedbackRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "Update dbo.Feedback set content = ? where feedbackId = ?";
+                String sql = "Update Feedback set content = ? where feedbackId = ?";
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, feedback.getContent());
                 pst.setInt(2, feedback.getFeedbackId());
@@ -137,7 +137,7 @@ public class FeedbackRepository {
     public static List<Feedback> getFeedbackByProductId(int productId) throws Exception {
         List<Feedback> feedbackList = new ArrayList<>();
         try {
-            String sql = "select * from dbo.Feedback where productId = ?";
+            String sql = "select * from Feedback where productId = ?";
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
                 PreparedStatement pst = cn.prepareStatement(sql);
