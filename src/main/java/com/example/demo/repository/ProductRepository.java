@@ -29,7 +29,7 @@ public class ProductRepository {
                         product.setPrice(table.getInt("price"));
                         product.setQuantity(table.getInt("quantity"));
                         product.setCategoryId(table.getInt("categoryId"));
-                        product.setStatus(table.getInt("status"));
+                        product.setStatus(table.getInt("statusId"));
                         product.setDescription(table.getString("description"));
                         product.setImage(table.getString("image"));
                         product.setDateCreate(table.getDate("dateCreate"));
@@ -169,7 +169,7 @@ public class ProductRepository {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
                 String sql = "SET ANSI_WARNINGS OFF;" +
-                        "INSERT INTO Product(productName, price, quantity, categoryId, status, description, image, dateCreate) " +
+                        "INSERT INTO Product(productName, price, quantity, categoryId, statusId, description, image, dateCreate) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?) " +
                         "SET ANSI_WARNINGS ON";
 
@@ -216,7 +216,7 @@ public class ProductRepository {
 
     //Delete product by changing product status to "xóa"
     public static boolean deleteProductByChangingStatus(int[] productId) throws Exception {
-        String sql = "Update Product set status = 4 where productId = ?";
+        String sql = "Update Product set statusId = 4 where productId = ?";
         try {
             Connection cn = DBUtils.makeConnection();
             int count = 0;
@@ -246,7 +246,7 @@ public class ProductRepository {
             if (status >= 0) {
                 Connection cn = DBUtils.makeConnection();
                 if (cn != null) {
-                    String sql = "Update Product set productName = ?, price = ?, quantity = ?, categoryId = ?, status = ?, description = ?, image = ?, dateUpdate = ? where productId = ?";
+                    String sql = "Update Product set productName = ?, price = ?, quantity = ?, categoryId = ?, statusId = ?, description = ?, image = ?, dateUpdate = ? where productId = ?";
                     PreparedStatement pst = cn.prepareStatement(sql);
                     pst.setString(1, product.getProductName());
                     pst.setInt(2, product.getPrice());
