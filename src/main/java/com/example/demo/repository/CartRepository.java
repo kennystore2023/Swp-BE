@@ -160,7 +160,7 @@ public class CartRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "select c.cartItemId, c.quantity, p.productId, p.productName, p.price, p.quantity as productQuantity, p.categoryId, p.description, p.status, p.image, p.dateCreate, p.dateUpdate " +
+                String sql = "select c.cartItemId, c.quantity, p.productId, p.productName, p.price, p.quantity as productQuantity, p.categoryId, p.description, p.statusId, p.image, p.dateCreate, p.dateUpdate " +
                         "from CartItems c " +
                         "left join Product p on p.productId = c.productId " +
                         "where c.cartId = ?";
@@ -179,7 +179,7 @@ public class CartRepository {
                         product.setPrice(table.getInt("price"));
                         product.setQuantity(table.getInt("productQuantity"));
                         product.setCategoryId(table.getInt("categoryId"));
-                        product.setStatus(table.getInt("status"));
+                        product.setStatus(table.getInt("statusId"));
                         product.setDescription(table.getString("description"));
                         product.setImage(table.getString("image"));
                         product.setDateCreate(table.getDate("dateCreate"));

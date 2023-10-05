@@ -63,7 +63,7 @@ public class EmailRepository {
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
         MimeMessage email = new MimeMessage(session);
-        email.setFrom(new InternetAddress("cskh.tiemhommie@gmail.com")); // mail gửi
+        email.setFrom(new InternetAddress("kennysbookstore@gmail.com")); // mail gửi
         email.addRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(userEmail)); // mail nhận
         email.setSubject(subject);
         email.setContent(message, "text/html; charset=utf-8");

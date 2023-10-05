@@ -59,10 +59,10 @@ public class OrderController {
     public ResponseEntity<Object> makeOrder(@RequestBody OrderDetails orderDetails) throws Exception {
         int orderId = OrderDetailsRepository.createOrderDetails(orderDetails);
         if(orderId > 0) {
-            String body = EmailRepository.messageCreate(orderId);
+            /*String body = EmailRepository.messageCreate(orderId);
             String subject = "Xác nhận đơn hàng mã:" + orderId;
             String email = OrderDetailsRepository.getOrderDetailsByOrderId(orderId).getUser().getEmail();
-            EmailRepository.sendEmail(subject, body, email);
+            EmailRepository.sendEmail(subject, body, email);*/
             return ResponseEntity.ok().body(orderId);
         }
         else return ResponseEntity.badRequest().body("Đã xa ra lỗi!");
