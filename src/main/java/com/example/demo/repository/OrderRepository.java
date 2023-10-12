@@ -142,7 +142,7 @@ public class OrderRepository {
                     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                     String strDate = dateFormat.format(Order.getPaymentDate());
                     pst.setString(6, strDate);
-                }else pst.setString(6, "");
+                }else pst.setString(6, null);
 
                 pst.setInt(7, Order.getOrderId());
                 int row = pst.executeUpdate();
