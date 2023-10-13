@@ -168,10 +168,8 @@ public class ProductRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "SET ANSI_WARNINGS OFF;" +
-                        "INSERT INTO Product(productName, price, quantity, categoryId, statusId, description, image, dateCreate) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?) " +
-                        "SET ANSI_WARNINGS ON";
+                String sql = "INSERT INTO Product(productName, price, quantity, categoryId, statusId, description, image, dateCreate)" +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
 
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setString(1, product.getProductName());
