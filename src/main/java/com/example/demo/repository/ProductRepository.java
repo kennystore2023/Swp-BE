@@ -214,7 +214,7 @@ public class ProductRepository {
 
     //Delete product by changing product status to "xóa"
     public static boolean deleteProductByChangingStatus(int[] productId) throws Exception {
-        String sql = "Update Product set statusId = 4 where productId = ?";
+        String sql = "Update Product set statusId = 3 where productId = ?";
         try {
             Connection cn = DBUtils.makeConnection();
             int count = 0;
