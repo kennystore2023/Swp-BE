@@ -69,10 +69,8 @@ public class FeedbackRepository {
         try {
             Connection cn = DBUtils.makeConnection();
             if (cn != null) {
-                String sql = "SET ANSI_WARNINGS OFF;" +
-                        "INSERT INTO Feedback(userId, productId, content, date)" +
-                        "VALUES (?, ?, ?, ?) " +
-                        "SET ANSI_WARNINGS ON";
+                String sql = "INSERT INTO Feedback(userId, productId, content, date)" +
+                        "VALUES (?, ?, ?, ?) ";
 
                 PreparedStatement pst = cn.prepareStatement(sql);
                 pst.setInt(1, feedback.getUser().getUserId());
