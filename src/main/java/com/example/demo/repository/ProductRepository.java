@@ -237,9 +237,12 @@ public class ProductRepository {
     public static boolean updateProduct(Product product) throws Exception {
         String dateUpdate = DBUtils.getCurrentDate();
         try {
+            if(getProductById(product.getProductId()) == null){
+                return false;
+            }
             int status = product.getStatus();
-            if(status != 4 && product.getQuantity() == 0){
-                status = 3;
+            if(status != 3 && product.getQuantity() == 0){
+                status = 2;
             }
             if (status >= 0) {
                 Connection cn = DBUtils.makeConnection();
